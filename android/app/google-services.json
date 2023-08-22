@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "460612349374",
+    "project_id": "carrabicho-projeto",
+    "storage_bucket": "carrabicho-projeto.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:460612349374:android:39aea4e90c305d6aea9def",
+        "android_client_info": {
+          "package_name": "com.example.carrrabicho"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "460612349374-d39na9o5mdf8ua8er3onmvvrbjnf1u3v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-wFUeczxyz8dNn5OowP6-PWCZs9ENEI4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "460612349374-8rs3rsg2hlrqno5hjbq16kdso8cdlu45.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

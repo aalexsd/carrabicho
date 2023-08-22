@@ -1,7 +1,7 @@
 import 'package:Carrrabicho/screens/edit_profile_screen.dart';
+import 'package:Carrrabicho/widgets/block_button.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -22,7 +22,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     final mediaquery = MediaQuery.of(context);
     final user = FirebaseAuth.instance.currentUser!;
     displayName = user.displayName ?? '';
@@ -43,7 +42,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               child: Text(
                 'Olá, $displayName',
                 style:
-                const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
             const Padding(
@@ -60,24 +59,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 children: [
                   ListTile(
                     title: const Text('Nome completo:',
-                      style: TextStyle(
-                        fontSize: 15
-                      )),
+                        style: TextStyle(fontSize: 15)),
                     trailing: Text(user.displayName ?? ''),
                     onTap: () {
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => EditProfileScreen(
-                            updateDisplayName: updateDisplayName,
-                            displayName: displayName,
-                          )));
+                                updateDisplayName: updateDisplayName,
+                                displayName: displayName,
+                              )));
                     },
                   ),
                   const Divider(height: 1),
                   ListTile(
-                    title: const Text('E-mail:',
-                    style: TextStyle(
-                      fontSize: 15
-                    ),),
+                    title: const Text(
+                      'E-mail:',
+                      style: TextStyle(fontSize: 15),
+                    ),
                     trailing: Text(user.email!),
                   ),
                   const Divider(height: 1),
@@ -86,30 +83,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             Center(
               child: Padding(
-                padding: const EdgeInsets.only(top: 30, left: 10, right: 10),
-                child: SizedBox(
-                  width: double.infinity,
-                  height: mediaquery.size.height * .07,
-                  child: ElevatedButton(
+                padding: const EdgeInsets.only(top: 20),
+                child: BlockButton(
+                    label: 'Edital Perfil',
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => EditProfileScreen(
                               updateDisplayName: updateDisplayName,
                               displayName: displayName)));
-                    },
-                    style: ButtonStyle(
-                      backgroundColor:
-                      MaterialStateProperty.all(Colors.black87),
-                      shape: MaterialStateProperty.all<
-                          RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30.0),
-                              side: const BorderSide(
-                                  color: Colors.black87))),
-                    ),
-                    child: const Text('Editar Perfil'),
-                  ),
-                ),
+                    }),
               ),
             ),
           ],

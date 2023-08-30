@@ -2,6 +2,10 @@ import 'package:Carrrabicho/screens/edit_profile_screen.dart';
 import 'package:Carrrabicho/widgets/block_button.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:provider/provider.dart';
+
+import '../Services/auth_services.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -85,13 +89,38 @@ class _ProfileScreenState extends State<ProfileScreen> {
               child: Padding(
                 padding: const EdgeInsets.only(top: 20),
                 child: BlockButton(
-                    label: 'Edital Perfil',
-                    onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => EditProfileScreen(
-                              updateDisplayName: updateDisplayName,
-                              displayName: displayName)));
-                    }),
+                  label: 'Edital Perfil',
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => EditProfileScreen(
+                            updateDisplayName: updateDisplayName,
+                            displayName: displayName)));
+                  },
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(right: 20, left: 20),
+              child: OutlinedButton(
+                onPressed: () {
+                  context.read<AuthService>().logout();
+                  signOutGoogle();
+                },
+                style: ElevatedButton.styleFrom(
+                  textStyle: const TextStyle(
+                      fontSize: 20, fontWeight: FontWeight.bold),
+                  padding: const EdgeInsets.all(20),
+                  backgroundColor: Colors.red,
+                ),
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Sair do App',
+                      style: TextStyle(fontSize: 18, color: Colors.white),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
@@ -99,4 +128,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ),
     );
   }
+
+  Future<void> signOutGoogle() async {
+    await GoogleSignIn().signOut();
+    await FirebaseAuth.instance.signOut();
+    Navigator.pop(context);
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Logout realizado com sucesso')),
+    );
+  }
+
 }

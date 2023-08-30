@@ -1,5 +1,6 @@
 import 'package:Carrrabicho/repository/profissoes.dart';
 import 'package:Carrrabicho/screens/home_screen.dart';
+import 'package:Carrrabicho/widgets/signup.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -123,7 +124,7 @@ class _LoginPageState extends State<LoginPage> {
                         Radius.circular(12.0),
                       ),
                     ),
-                    height: isLogin ? screenH * .56 : screenH * .56,
+                    height: isLogin ? screenH * .56 : screenH * .65,
                     width: screenW * .88,
                     margin: EdgeInsets.symmetric(horizontal: 3),
                     padding: const EdgeInsets.all(5.0),
@@ -182,89 +183,7 @@ class _LoginPageState extends State<LoginPage> {
                             ],
                           ),
                         if(!isLogin && isUsuario)
-                          Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 24, right: 24, top: 10),
-                                child: TextFormField(
-                                  controller: email,
-                                  decoration: const InputDecoration(
-                                    border: OutlineInputBorder(),
-                                    prefixIcon: Icon(Icons.person),
-                                    hintText: 'Digite seu Nome',
-                                    labelText: 'Nome',
-                                    contentPadding: EdgeInsets.symmetric(vertical: 8),
-                                  ),
-                                  keyboardType: TextInputType.emailAddress,
-                                  validator: (value) {
-                                    if (value!.isEmpty) {
-                                      return 'Informe seu nome corretamente!';
-                                    }
-                                    return null;
-                                  },
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 24, right: 24, top: 12),
-                                child: TextFormField(
-                                  controller: email,
-                                  decoration: const InputDecoration(
-                                    border: OutlineInputBorder(),
-                                    prefixIcon: Icon(Icons.email),
-                                    hintText: 'Digite seu E-mail',
-                                    labelText: 'Email',
-                                    contentPadding: EdgeInsets.symmetric(vertical: 8),
-                                  ),
-                                  keyboardType: TextInputType.emailAddress,
-                                  validator: (value) {
-                                    if (value!.isEmpty) {
-                                      return 'Informe o email corretamente!';
-                                    }
-                                    return null;
-                                  },
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 24, right: 24, top: 12),
-                                child: TextFormField(
-                                  obscureText: !showPassword,
-                                  controller: senha,
-                                  decoration: InputDecoration(
-                                    border: OutlineInputBorder(),
-                                    prefixIcon: Icon(Icons.lock),
-                                    hintText: 'Digite sua Senha',
-                                    labelText: 'Senha',
-                                    contentPadding: EdgeInsets.symmetric(vertical: 8),
-                                    suffixIcon: InkWell(
-                                      onTap: _togglePasswordVisibility,
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(
-                                            top: 12.0, right: 12, bottom: 12),
-                                        child: Text(
-                                          showPassword ? 'Ocultar' : 'Exibir',
-                                          style: const TextStyle(
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  validator: (value) {
-                                    if (value!.isEmpty) {
-                                      return 'Informa sua senha!';
-                                    } else if (value.length < 6) {
-                                      return 'Sua senha deve ter no mínimo 6 caracteres';
-                                    }
-                                    return null;
-                                  },
-                                ),
-                              ),
-                            ],
-                          ),
+                          GeneralSignUp(),
                         if(!isLogin && !isUsuario)
                           Column(
                             children: [
@@ -298,85 +217,7 @@ class _LoginPageState extends State<LoginPage> {
                                   },
                                 ),
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 24, right: 24, top: 10),
-                                child: TextFormField(
-                                  controller: email,
-                                  decoration: const InputDecoration(
-                                    border: OutlineInputBorder(),
-                                    prefixIcon: Icon(Icons.person),
-                                    hintText: 'Digite seu Nome',
-                                    labelText: 'Nome',
-                                    contentPadding: EdgeInsets.symmetric(vertical: 8),
-                                  ),
-                                  keyboardType: TextInputType.emailAddress,
-                                  validator: (value) {
-                                    if (value!.isEmpty) {
-                                      return 'Informe seu nome corretamente!';
-                                    }
-                                    return null;
-                                  },
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 24, right: 24, top: 12),
-                                child: TextFormField(
-                                  controller: email,
-                                  decoration: const InputDecoration(
-                                    border: OutlineInputBorder(),
-                                    prefixIcon: Icon(Icons.email),
-                                    hintText: 'Digite seu E-mail',
-                                    labelText: 'Email',
-                                    contentPadding: EdgeInsets.symmetric(vertical: 8),
-                                  ),
-                                  keyboardType: TextInputType.emailAddress,
-                                  validator: (value) {
-                                    if (value!.isEmpty) {
-                                      return 'Informe o email corretamente!';
-                                    }
-                                    return null;
-                                  },
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 24, right: 24, top: 12),
-                                child: TextFormField(
-                                  obscureText: !showPassword,
-                                  controller: senha,
-                                  decoration: InputDecoration(
-                                    border: OutlineInputBorder(),
-                                    prefixIcon: Icon(Icons.lock),
-                                    hintText: 'Digite sua Senha',
-                                    labelText: 'Senha',
-                                    contentPadding: EdgeInsets.symmetric(vertical: 8),
-                                    suffixIcon: InkWell(
-                                      onTap: _togglePasswordVisibility,
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(
-                                            top: 12.0, right: 12, bottom: 12),
-                                        child: Text(
-                                          showPassword ? 'Ocultar' : 'Exibir',
-                                          style: const TextStyle(
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  validator: (value) {
-                                    if (value!.isEmpty) {
-                                      return 'Informa sua senha!';
-                                    } else if (value.length < 6) {
-                                      return 'Sua senha deve ter no mínimo 6 caracteres';
-                                    }
-                                    return null;
-                                  },
-                                ),
-                              ),
+                              GeneralSignUp(),
                             ],
                           ),
                         if (isLogin)
@@ -468,7 +309,8 @@ class _LoginPageState extends State<LoginPage> {
                                 if (isLogin) {
                                   login();
                                 } else {
-                                  registrar();
+                                  // registrar();
+                                  Navigator.pushNamed(context, '/signup2');
                                 }
                               }
                             },
@@ -493,10 +335,16 @@ class _LoginPageState extends State<LoginPage> {
                                   : [
                                       Padding(
                                         padding: const EdgeInsets.all(8.0),
-                                        child: Text(
+                                        child:
+                                        (isLogin) ?
+                                        Text(
                                           actionButton,
                                           style: const TextStyle(fontSize: 20),
-                                        ),
+                                        )
+                                            : Text(
+                                          'Prosseguir',
+                                          style: const TextStyle(fontSize: 20),
+                                        )
                                       ),
                                     ],
                             ),

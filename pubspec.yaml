@@ -48,6 +48,7 @@ dependencies:
   swipable_stack: any
   dropdown_search: ^5.0.6
   search_choices: ^2.2.5
+  http: ^1.1.0
 
 
 dev_dependencies:

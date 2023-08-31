@@ -32,21 +32,24 @@ class _SignUpPage2State extends State<SignUpPage2> {
     return Scaffold(
       backgroundColor: Colors.grey[100],
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.only(top: 50.0),
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/images/loginBG.png"),
+              fit: BoxFit.cover,
+            ),
+          ),
           child: Form(
             key: _formKey,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                CircleAvatar(
-                  backgroundImage: AssetImage('assets/images/carrabicho.png'),
-                  radius: 50,
-                  backgroundColor: Colors.white,
-                ),
                 SizedBox(
-                  height: 20,
-                ),
+                    height: 120,
+                    width: 120,
+                    child: Image.asset('assets/images/logo.png',
+                      fit: BoxFit.contain,)),
                 Center(
                   child: Container(
                     decoration: BoxDecoration(
@@ -63,7 +66,7 @@ class _SignUpPage2State extends State<SignUpPage2> {
                         Radius.circular(12.0),
                       ),
                     ),
-                    height: screenH * .8,
+                    height: screenH * .7,
                     width: screenW * .88,
                     margin: EdgeInsets.symmetric(horizontal: 3),
                     padding: const EdgeInsets.all(5.0),

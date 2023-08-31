@@ -91,23 +91,32 @@ class _LoginPageState extends State<LoginPage> {
     final screenW = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      backgroundColor: Colors.grey[100],
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.only(top: 50),
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/images/loginBG.png"),
+              fit: BoxFit.cover,
+            ),
+          ),
           child: Form(
             key: formKey,
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                CircleAvatar(
-                  backgroundImage: AssetImage('assets/images/carrabicho.png'),
-                  radius: 50,
-                  backgroundColor: Colors.white,
+                (isLogin)
+                ?  SizedBox(
+                  height: screenH * .1,
+                )
+                : SizedBox(
+                  height: screenH * .01,
                 ),
                 SizedBox(
-                  height: 20,
-                ),
+                  height: 120,
+                  width: 120,
+                    child: Image.asset('assets/images/logo.png',
+                    fit: BoxFit.contain,)),
                 Center(
                   child: Container(
                     decoration: BoxDecoration(
@@ -124,10 +133,9 @@ class _LoginPageState extends State<LoginPage> {
                         Radius.circular(12.0),
                       ),
                     ),
-                    height: isLogin ? screenH * .56 : screenH * .65,
+                    height: isLogin ? screenH * .56 : screenH * .7,
                     width: screenW * .88,
                     margin: EdgeInsets.symmetric(horizontal: 3),
-                    padding: const EdgeInsets.all(5.0),
                     child: Column(
                       children: [
                         Text(
@@ -321,32 +329,32 @@ class _LoginPageState extends State<LoginPage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: (loading)
                                   ? [
-                                      const Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: SizedBox(
-                                          width: 24,
-                                          height: 24,
-                                          child: CircularProgressIndicator(
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                      )
-                                    ]
+                                const Padding(
+                                  padding: EdgeInsets.all(16),
+                                  child: SizedBox(
+                                    width: 24,
+                                    height: 24,
+                                    child: CircularProgressIndicator(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                )
+                              ]
                                   : [
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child:
-                                        (isLogin) ?
-                                        Text(
-                                          actionButton,
-                                          style: const TextStyle(fontSize: 20),
-                                        )
-                                            : Text(
-                                          'Prosseguir',
-                                          style: const TextStyle(fontSize: 20),
-                                        )
-                                      ),
-                                    ],
+                                Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child:
+                                    (isLogin) ?
+                                    Text(
+                                      actionButton,
+                                      style: const TextStyle(fontSize: 20),
+                                    )
+                                        : Text(
+                                      'Prosseguir',
+                                      style: const TextStyle(fontSize: 20),
+                                    )
+                                ),
+                              ],
                             ),
                           ),
                         ),
@@ -375,32 +383,30 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         if (isLogin)
                           Center(
-                            child: Padding(
-                              padding: const EdgeInsets.only(top: 10.0),
-                              child: SignInButton(
-                                Buttons.google,
-                                text: 'Entre com o Google',
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(5),
+                                child: Padding(
+                                  padding: const EdgeInsets.only(top: 10.0),
+                                  child: SignInButton(
+                                    Buttons.google,
+                                    text: 'Entre com o Google',
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(5),
+                                    ),
+                                    onPressed: () {
+                                      signInWithGoogle();
+                                    },
+                                  ),
                                 ),
-                                onPressed: () {
-                                  signInWithGoogle();
-                                },
                               ),
-                            ),
-                          ),
+                        TextButton(
+                                onPressed: () => setFormAction(!isLogin),
+                                child: Text(
+                                  toggleButton,
+                                  style: const TextStyle(color: Colors.indigo),
+                                ),
+                              ),
+
                       ],
                     ),
-                  ),
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                TextButton(
-                  onPressed: () => setFormAction(!isLogin),
-                  child: Text(
-                    toggleButton,
-                    style: const TextStyle(color: Colors.indigo),
                   ),
                 ),
               ],

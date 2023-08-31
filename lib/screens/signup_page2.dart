@@ -63,7 +63,7 @@ class _SignUpPage2State extends State<SignUpPage2> {
                         Radius.circular(12.0),
                       ),
                     ),
-                    height: screenH * .7,
+                    height: screenH * .8,
                     width: screenW * .88,
                     margin: EdgeInsets.symmetric(horizontal: 3),
                     padding: const EdgeInsets.all(5.0),
